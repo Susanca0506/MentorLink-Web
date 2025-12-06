@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MentorLink - Conectando Instructores y Aprendices</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .logo h1 {
+            font-size: 28px;
+            color: #667eea;
+        }
+
+	.logo-image {
+    	    width: 48px;      
+            height: 48px;
+    	    border-radius: 12px; 
+     	    object-fit: cover;
+	}
+
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        .download-icon {
+            margin-right: 10px;
+        }
+        
+        /* Features Section */
+        .features {
+            background: white;
+            padding: 80px 0;
+        }
+        
+        .features h3 {
+            text-align: center;
+            font-size: 36px;
+            color: #667eea;
+            margin-bottom: 60px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature-card {
+            background: #f8f9ff;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h4 {
+            color: #667eea;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        /* Screenshots Section */
+        .screenshots {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .screenshots h3 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 60px;
+        }
+        
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .screenshot-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .screenshot-placeholder {
+            width: 100%;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #667eea;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .screenshot-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Contact Section */
+        .contact {
+            background: white;
+            padding: 80px 0;
+        }
+        
+        .contact h3 {
+            text-align: center;
+            font-size: 36px;
+            color: #667eea;
+            margin-bottom: 60px;
+        }
+        
+        .developers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .developer-card {
+            background: #f8f9ff;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #667eea;
+        }
+        
+        .developer-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+        }
+        
+        .developer-card h4 {
+            color: #667eea;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .developer-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: #667eea;
+            font-size: 24px;
+            transition: transform 0.3s, color 0.3s;
+            text-decoration: none;
+        }
+        
+        .social-links a:hover {
+            transform: scale(1.2);
+            color: #764ba2;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+        }
+        
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .features h3, .screenshots h3, .contact h3 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="logo.jpg" alt="Logo MentorLink" class="logo-image">
+                    <h1>MentorLink</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <section class="hero">
+        <div class="container">
+            <h2>Conectando Instructores y Aprendices</h2>
+            <p>El puente perfecto entre expertos y quienes desean aprender. Encuentra instructores especializados, agenda asesorías personalizadas y crece profesionalmente.</p>
+            <a href="https://github.com/Susanca0506/MentorLink/releases/download/v1.0.0/app-release.apk" class="download-btn" id="downloadBtn">
+    		<span class="download-icon">📱</span>
+    			Descargar MentorLink
+		</a>
+
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h3>Características Principales</h3>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">👨‍🏫</div>
+                    <h4>Perfiles de Expertos</h4>
+                    <p>Encuentra instructores especializados en diversas áreas. Explora sus perfiles, experiencia y áreas de expertise.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <h4>Agenda Flexible</h4>
+                    <p>Programa asesorías para la fecha y hora que mejor te convenga. Modalidad virtual o presencial según tus necesidades.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h4>Asesorías Gratuitas o Pagadas</h4>
+                    <p>Los instructores deciden si ofrecer sus asesorías de forma gratuita o con un costo. Transparencia total en precios.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">✉️</div>
+                    <h4>Comunicación Directa</h4>
+                    <p>Una vez aceptada la asesoría, recibirás el contacto del instructor para coordinar todos los detalles.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⭐</div>
+                    <h4>Sistema de Evaluación</h4>
+                    <p>Califica tu experiencia y recibe retroalimentación. Sistema de estrellas para evaluación mutua entre instructores y aprendices.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h4>Especialización</h4>
+                    <p>Busca instructores por área específica de conocimiento. Encuentra exactamente lo que necesitas aprender.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="screenshots">
+        <div class="container">
+            <h3>¿Qué encontraremos en MentorLink?</h3>
+            <div class="screenshots-grid">
+                <div class="screenshot-card">
+                    <img src="principal_aprendiz.jpg" alt="Página Principal de Aprendiz">
+                </div>
+                <div class="screenshot-card">
+                    <img src="perfil_instructor.jpg" alt="Perfil de instructor">
+                </div>
+                <div class="screenshot-card">
+                    <img src="solicitar_asesoria.jpg" alt="Perfil de instructor">
+                </div>
+                <div class="screenshot-card">
+                    <img src="calificar_instructor.jpg" alt="Calificar instructor">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <div class="container">
+            <h3>Desarrolladores</h3>
+            <div class="developers">
+                <div class="developer-card">
+                    <div class="developer-icon">👨‍💻</div>
+                    <h4>Susana Cárdenas Vázquez</h4>
+                    <p>TSU Desarrollador de Software Multiplataforma</p>
+                    <div class="social-links">
+    <a href="https://www.instagram.com/susyc_v?igsh=MWV5ZnJmY2I0bTVpcA==" title="Instagram" target="_blank">📸</a>
+</div>
+
+                </div>
+                
+                <div class="developer-card">
+                    <div class="developer-icon">👨‍💻</div>
+                    <h4>Jesús Talat Otero Hernández</h4>
+                    <p>TSU Desarrollador de Software Multiplataforma</p>
+                    <div class="social-links">
+    <a href="https://www.instagram.com/jesusotero127?igsh=MWEyY3VkNDBkYXFscg==" title="Instagram" target="_blank">📸</a>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 MentorLink. Todos los derechos reservados.</p>
+            <p>
+                <a href="https://github.com/JesusTalatOteroHernandez/MentorLink1.3" target="_blank">Ver en GitHub</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+    document.getElementById('downloadBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+
+        // Tu enlace real del APK en GitHub
+        const apkUrl = 'https://github.com/Susanca0506/MentorLink/releases/download/v1.0.0/app-release.apk';
+
+        window.open(apkUrl, '_blank');
+    });
+</script>
+
+</body>
+</html>
